@@ -1,0 +1,87 @@
+@mixin svg-bg($name, $extension: png, $color: transparent, $position: 0 0, $repeat: no-repeat) {
+  background: url(../images/#{$name}.#{$extension}) $color $position $repeat;
+  background: none, url(../images/#{$name}.svg) $color $position $repeat;
+}
+
+@mixin fontsize($number) {
+  font-size: $number + px; //this line can be commented out if we're not supporting IE8
+  font-size: $number/$base-font-size + rem;
+}
+
+@mixin stagecenter($stage-width: $max-stage-width, $container-font-size: $base-font-size) {
+  margin: 0 auto;
+  width: 100%;
+  max-width: px-to-em($stage-width, $container-font-size);
+  .no-mediaqueries & {
+    width: px-to-em($stage-width, $container-font-size);
+  }
+}
+
+@mixin placeholder($c-placeholder: '#888888') {
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: $c-placeholder;
+  }
+
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: $c-placeholder;
+  }
+
+  input.placeholder_text,
+  textarea.placeholder_text {
+    color: $c-placeholder;
+  }
+}
+
+@mixin gradient-hor($color1, $color2) {
+  background: $color2; //fallback; it could just as easily be $color1
+  background: linear-gradient(to bottom,  $color1 0%,$color2 100%); //god bless autoprefixer
+}
+
+@mixin gradient-vert($color1, $color2) {
+  background: $color2; //fallback; it could just as easily be $color1
+  background: linear-gradient(to right,  $color1 0%,$color2 100%);
+}
+
+@mixin transform($var) {
+  transform: $var;
+}
+
+@mixin transition($var: all .3s ease) {
+  transition: $var;
+}
+
+/**
+ *
+ * This method returns the content wrapped in the requested media query. It also checks to see if
+ * the no-query variable has been defined. If the variable exists the content is output and wrapped
+ * in a class as defined by the variable.
+ *
+ * The $no-query defined class is to wrap content in when there are no media queries available for
+ * the current browser. This is typically provided by a javascript plugin like modernizr.
+ *
+ * $bp: The breakpoint in pixels
+ *
+ * $no-ie: To override this breakpoint and not use it in browsers that don't support media queries
+ * pass true as the second argument.
+ *
+ */
+@mixin breakpoint($bp, $no-ie: false) {
+
+  // Pass the given content and wrap it in a min-width media query
+  @media (min-width: #{$bp}) {
+    // The content contained within the call to our mixin
+    @content;
+  }
+
+  // Check to see if we have defined the no-query variable
+  @if variable-exists(no-query) and $no-ie == false {
+    // If media queries are not available we wrap the content in this class
+    #{$no-query} & {
+      // The content contained within the call to our mixin
+      @content;
+    }
+  }
+
+}

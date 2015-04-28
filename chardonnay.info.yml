@@ -1,0 +1,11 @@
+name: Chardonnay
+type: theme
+description: 'RepEquity Drupal 8 starter theme.'
+package: RepEquity
+core: 8.x
+libraries:
+  - chardonnay/global-styling
+regions:
+  header: Header
+  content: Content
+  footer: Footer
