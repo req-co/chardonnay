@@ -4,7 +4,7 @@ description: 'RepEquity Drupal 8 starter theme.'
 package: RepEquity
 core: 8.x
 libraries:
-  - chardonnay/global-styling
+  - chardonnay/base
 regions:
   header: Header
   content: Content

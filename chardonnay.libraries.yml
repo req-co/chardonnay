@@ -1,0 +1,12 @@
+base:
+  version: VERSION
+  css:
+    theme:
+      css/formalize.css: {}
+      css/style.css: {}
+  js:
+    theme:
+      js/vendor/jquery.formalize.js: {}
+      js/vendor/jquery.matchHeight-min.js: {}
+      js/vendor/modernizr.js: {}
+      js/chardonnay-functions.js: {}
